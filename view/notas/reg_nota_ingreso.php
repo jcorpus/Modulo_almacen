@@ -1,11 +1,11 @@
 
 <section class="content-header cabecera">
       <h1>
-        Registro de Productos
+        Nota de Ingreso
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Producto</a></li>
-        <li class="active">Registro</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Registro</a></li>
+        <li class="active">Nota de ingreso</li>
       </ol>
 
 </section>
@@ -14,11 +14,11 @@
 <section class="content">
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Datos del Producto</h3>
+            <!--  <h3 class="box-title">Datos del Producto</h3>-->
             </div>
 
             <!-- /.box-header -->
@@ -30,21 +30,24 @@
                 </div>
                 <!--Mensaje de registro-->
                 <div class="form-group">
-                  <label  class="col-sm-2 control-label">Nombre</label>
-                  <div class="col-sm-4">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="" placeholder="nombre producto" maxlength="40">
+                <label class="col-sm-1 control-label">Orden de compra</label>
+                  <div class="col-sm-3">
+                    <input type="hidden" onkeypress="return solo_letras(event);" class="form-control validacion" name="autor_tesis" id="autor_tesis">
+                    <input type="text" onkeypress="return solo_letras(event);" class="form-control validacion" name="autor_tesis_2" disabled="" id="autor_tesis_2" maxlength="170" size="170" placeholder="Autor">
                   </div>
-                  <label  class="col-sm-2 control-label">Marca</label>
-                  <div class="col-sm-4">
-                    <select name="marca" id="" class="form-control">
-                      <option value="marca1">marca 1</option>
-                      <option value="marca1">marca 2</option>
-                      <option value="marca1">marca 3</option>
-                    </select>
+                  <div class="col-sm-2">
+                  <button type="button" name="buscar" id="buscar" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal_buscar_alumno">Buscar <span class="glyphicon glyphicon-search"></span></button>
                   </div>
+                  <label class="col-sm-1 control-label">Titulo</label>
+                  <div class="col-sm-4">
+                    
+                    <input type="text" name="nombre_tesis" class="form-control validacion" id="nombre_tesis" placeholder="Titulo">
+                  </div>
+                  
                 </div>
+
                 <div class="form-group">
-                  <label  class="col-sm-2 control-label">Tipo de Prod.</label>
+                  <label  class="col-sm-1 control-label">Tipo de Prod.</label>
                   <div class="col-sm-4">
                     <select name="marca" id="" class="form-control">
                       <option value="marca1">tipo 1</option>
@@ -152,29 +155,7 @@
           <!-- /.box -->
           <!-- /.box -->
         </div>
-         <div class="col-md-3">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Otros datos</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" id="otraforma">
-            <p id="respuesta"></p>
-              <div class="box-body">
-                <div class="form-group">
-                  <label>Imagen de Producto</label>
-                    </div>
-                    <br>
-                    <img id="preview_image" class="imagenpreview" width="170" src="site_media/img/producto.png" alt="imagen" />
-
-                </div>
-              </div>
-            </form>
-          </div>
-
-        </div>
+         
     </div><!--row-->
 
 </section>

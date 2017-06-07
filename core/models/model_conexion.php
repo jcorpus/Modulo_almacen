@@ -4,8 +4,8 @@
 #constantes de conexion
 define('DB_HOST','localhost');
 define('DB_USER','root');
-define('DB_PASS','jcorpus');
-define('DB_NAME','bd_repos');
+define('DB_PASS','');
+define('DB_NAME','bd_almacen');
 
 date_default_timezone_set('America/Lima');
 

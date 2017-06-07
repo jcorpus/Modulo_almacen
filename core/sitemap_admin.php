@@ -17,6 +17,11 @@ else if ($_GET['p'] == 'reg_producto') {
 	$titulo = 'Registro de Productos';
 	$contenido = 'view/producto/registro_producto.php';
 }
+else if($_GET['p'] =='reg_nota_ingreso'){
+	$titulo = 'Nota de ingreso';
+	$contenido = 'view/notas/reg_nota_ingreso.php';
+
+}
 
 else{
 	$titulo = 'ERROR 404';

@@ -107,6 +107,17 @@
           </ul>
         </li>
         <li class="treeview">
+          <a href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>&ensp;&ensp; <span>Notas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="?p=reg_nota_ingreso"><i class="fa fa-sign-in" aria-hidden="true"></i>&ensp;Nota de Ingreso</a></li>
+            <li><a href="?p=reg_nota_salida"><i class="fa fa-external-link-square" aria-hidden="true"></i>&ensp;Nota de Salida</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
           <a href="#"><i class="fa fa-book fa-lg" aria-hidden="true"></i>&ensp;&ensp; <span>Kardex</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
