@@ -1,4 +1,9 @@
 <?php
+
+
+//http://php.net/manual/es/ref.mysql.php
+
+
 require('core/bin/funciones/encriptar_pass.php');
 //$_SESSION['intentos'] = 0;
 if(!empty($_POST['user']) and !empty($_POST['pass'])){

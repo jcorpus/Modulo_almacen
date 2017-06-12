@@ -21,52 +21,13 @@ function validar_email_alumno(){
      }
 
 }
-/******************validar select **************/
-function validar_cumple() {
-/*
-var selec_cumple = document.getElementById('mes');
-if(!selec_cumple.value) {  
-    window.alert('debes selecionar un mes');  
-    //securityQuestionElement.value = 'm'
-    return false;  
-}
-*/
-var dia = document.getElementById("dia").selectedIndex;
-  var valll = false;
-  if (dia ==null || dia==0) {
-    alert("falta el dia");
-    vall = false;
-  }else{
-    vall = true;
-  }
-  
-}
-
-
-
-/******************validar radio*********************/
-function radio_validate(){
-  var opciones = document.getElementsByName("sexo_alumno");
-  radioo = false;
-  for (var i = 0; i < opciones.length; i++) {
-    if(opciones[i].checked){
-      radioo = true;
-      break;
-    }
-  }
-  if (!radioo){
-      //alert("falta el sexo");
-      radioo = false;
-  }
-    return radioo;
-}
 
 /****************Validar campos vacios*************/
 function validate () {
-    var campos, valido, resp, radioo;
+    var campos, valido, resp;
 
     // todos los campos .form-control en #campos
-    campos = document.querySelectorAll('#formulario_alumno input.validacion');
+    campos = document.querySelectorAll('#formulario_usuario input.validacion');
 
     valido = true; // es valido hasta demostrar lo contrario
     // recorremos todos los campos
@@ -95,26 +56,26 @@ function validate () {
 
 /********************************************************/
 
-function reg_alumno(){
+function registrar_usuario(){
 
-  var validar_email =validar_email_alumno();
-  console.log("el email trae: "+validar_email);
-  var respuesta2 = radio_validate();
+  //var validar_email =validar_email_alumno();
+  //console.log("el email trae: "+validar_email);
+  
   var respuesta = validate();
-  console.log("respuesta2 "+respuesta2);
+
   console.log("respuesta "+respuesta);
 
-  if (validar_email && respuesta && respuesta2) {
+  if (respuesta) {
 
   //var emaill = document.getElementById("get_pass_user").value;
-  var formalumno = new FormData($("#formulario_alumno")[0]);
+  var formusuario = new FormData($("#formulario_usuario")[0]);
 
   var msjpass;
   /// metodos de ajax aqui http://www.w3schools.com/jquery/ajax_ajaxsetup.asp
 	$.ajax({
-		url:'controller/controller_alumno.php',
+		url:'controller/controller_usuario.php',
 		type: 'POST',
-    data: formalumno,
+    data: formusuario,
     cache:false,  //si el navegador debe almacenar en cache la pagina solicitada
     contentType: false, //"application / x-www-form-urlencoded"
     processData: false, //
@@ -123,7 +84,7 @@ function reg_alumno(){
     msjpass += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
     msjpass += ' <p> Enviando .....</p>'
     msjpass += '</div>';
-    document.getElementById('msj_res_alumno').innerHTML = msjpass;
+    document.getElementById('msj_res_usuario').innerHTML = msjpass;
 
 		},
     complete: function(){
@@ -132,7 +93,7 @@ function reg_alumno(){
     },
 		success: function(data){
 
-    document.getElementById('msj_res_alumno').innerHTML = data;
+    document.getElementById('msj_res_usuario').innerHTML = data;
 
     /*
 
@@ -163,7 +124,60 @@ function reg_alumno(){
   msjpass += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
   msjpass += ' <p> Faltan Datos </p>'
   msjpass += '</div>';
-  document.getElementById('msj_res_alumno').innerHTML = msjpass;
+  document.getElementById('msj_res_usuario').innerHTML = msjpass;
 }
+
+}
+
+
+
+function buscar_persona(){
+
+
+    var dni_persona = document.getElementById("dni_persona").value;
+    var usuario_nombre = document.getElementById("usuario_nombre").value;
+    
+    $.ajax({
+    url:'controller/controller_usuario.php',
+    type: 'POST',
+    data: 'dni_persona=' + dni_persona +'&usuario_nombre='+usuario_nombre,
+    beforeSend: function(){
+    msjpass = '<div class="alert alert-dismissible alert-warning"> ';
+    msjpass += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+    msjpass += ' <p> Enviando .....</p>'
+    msjpass += '</div>';
+    //document.getElementById('msj_persona').innerHTML = msjpass;
+
+    },
+    complete: function(){
+      
+    },
+    success: function(resp){
+    document.getElementById('msj_persona').innerHTML = resp;      
+    var data = JSON.parse(resp);
+    if(data.length > 0){
+
+       for (var i = 0; i < data.length; i++) {
+        $("#nombre_persona").val(data[i][0]);
+        $("#ape_persona").val(data[i][1]+' '+data[i][2]);
+      }
+       
+
+
+    }
+
+
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown, jqXHR){
+      alert("SE PRODUJO UN ERROR, vuelve a recargar la pagina");
+
+
+    }
+
+  });
+
+
+
+
 
 }

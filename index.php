@@ -24,6 +24,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
   <script src="site_media/plugins/jQuery/jquery-2.2.3.min.js"></script>
   <script src="html/javascript/v_login.js"></script>
   <script src="html/javascript/recuperar_pass.js"></script>
+  <script src="html/javascript/reg_usuario.js"></script>
 </head>
 <body class="login-page">
   <div class="login-box">
@@ -37,7 +38,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
 
                 <form class="form-signin" onkeypress="return runLogin(event);">
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="user_dni" name="user_dni" class="form-control" placeholder="Usuario" maxlength="10" >
+                    <input type="text" id="user_email" name="user_email" class="form-control" placeholder="Usuario" maxlength="10" >
                     <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Password" >
                     <div id="remember" class="checkbox">
                         <label>
@@ -89,7 +90,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
           </div>
           <div class="form-group">
               <div class="col-sm-5">
-              <img src="captcha2.php" id="valor"alt="">
+              <img src="captcha2.php" id="valor" alt="">
               <a href="javascript:void(0)" onclick="document.getElementById('valor').src='captcha2.php'" ><img src="site_media/img/refresh.png" alt=""></a>
               </div>
               <div class="col-sm-3">
@@ -120,16 +121,17 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
           <h4 class="modal-title" id="mimodal_registrar">Formulario de Registro</h4>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal" id="formulario_producto">
+          <form class="form-horizontal" id="formulario_usuario">
               <div class="box-body">
                 <!--Mensaje de registro-->
-                <div class="" id="msj_res_producto">
+                <div class="" id="msj_persona">
                 </div>
+                <p id="datos_json"></p>
                 <!--Mensaje de registro-->
                 <div class="form-group">
                   <label class="col-sm-3 control-label">DNI</label>
                   <div class="col-sm-5">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="dni_persona" placeholder="DNI" maxlength="8">
+                    <input type="text" name="dni_persona" class="form-control validacion" value="43458671" id="dni_persona" placeholder="DNI" maxlength="8">
                   </div>
                   <button type="button" style="cursor:pointer;" onclick="buscar_persona();" class="btn btn-primary">Buscar &nbsp;&nbsp; <i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
                 </div>
@@ -137,7 +139,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Nombre</label>
                   <div class="col-sm-5">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="nombre_persona" placeholder="nombre" maxlength="40">
+                    <input type="text" name="nombre_persona" onkeypress="return solo_letras(event);" class="form-control validacion" value="" disabled="" id="nombre_persona" placeholder="nombre" maxlength="40">
                   </div>
                   
                 </div>
@@ -145,7 +147,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Apellidos</label>
                   <div class="col-sm-5">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="ape_persona" placeholder="Apellidos" maxlength="40">
+                    <input type="text" name="ape_persona" onkeypress="return solo_letras(event);" class="form-control validacion" value="" disabled="" id="ape_persona" placeholder="Apellidos" maxlength="40">
                   </div>
                   
                 </div>
@@ -153,7 +155,15 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
 				<div class="form-group">
                   <label class="col-sm-3 control-label">Usuario</label>
                   <div class="col-sm-5">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="usuario_nombre" placeholder="nombre usuario" maxlength="40">
+                    <input type="text" name="usuario_nombre"  class="form-control validacion" value="" id="usuario_nombre" placeholder="nombre usuario" maxlength="40">
+                  </div>
+                  
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Email</label>
+                  <div class="col-sm-5">
+                    <input type="mail" name="usuario_email"  class="form-control validacion" value="" id="usuario_email" placeholder="nombre usuario" maxlength="40">
                   </div>
                   
                 </div>
@@ -161,7 +171,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Contraseña</label>
                   <div class="col-sm-5">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="pass_user" placeholder="contraseña" maxlength="40">
+                    <input type="text" name="pass_user" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="pass_user" placeholder="contraseña" maxlength="40">
                   </div>
                   
                 </div>
@@ -169,7 +179,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Repetir Contraseña</label>
                   <div class="col-sm-5">
-                    <input type="text" name="" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="pass2_user" placeholder="repetir contraseña" maxlength="40">
+                    <input type="text" name="pass2_user" onkeypress="return solo_letras(event);" class="form-control validacion" value="" id="pass2_user" placeholder="repetir contraseña" maxlength="40">
                   </div>
                   
                 </div>
@@ -179,7 +189,7 @@ if (isset($_SESSION['app_id'])) { //esta definida app_id
               </div>
               <!-- /.box-body -->
               <div class="box-footer text-center">
-                <button type="button" style="cursor:pointer;" onclick="();" class="btn btn-success">Registrar &nbsp;&nbsp; <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> </button>
+                <button type="button" style="cursor:pointer;" onclick="registrar_usuario();" class="btn btn-success">Registrar &nbsp;&nbsp; <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> </button>
               </div>
               <!-- /.box-footer -->
             </form>

@@ -25,8 +25,24 @@ class Conexion2 extends mysqli{
     return mysqli_free_result($query); //Libera la memoria asociada a un resultado
   }
 
+
+
   public function recorrer($query){
-    return mysqli_fetch_array($query); //Obtiene una fila de resultados como un array asociativo, numérico, o ambos
+    try{
+    if(empty($query)){
+      echo "ocurrio un error \n";
+      throw new Exception('ERROR EN LA funcion recorrer');
+      return 0;
+    }else{
+      return mysqli_fetch_array($query); //Obtiene una fila de resultados como un array asociativo, numérico, o ambos
+
+    }
+
+  }catch(Exception $e){
+     echo $e->getMessage();
+     echo '<br>En la linea: ' .$e->getLine();
+   }
+      
   }
 
   public function recorrer2($query){
